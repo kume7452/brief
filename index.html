@@ -1,0 +1,371 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>好婚市集 行前通知</title><style>
+:root{--r:#9D380E;--b:#6BA1C7;--bg:#f7f4f1;--ln:#e4ddd6;--tx:#2b2522;--mu:#857a72;--er:#c0392b;--wn:#c98a12}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.6 "Noto Sans TC",system-ui,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:0 14px}
+header{background:#fff;border-bottom:1px solid var(--ln);position:sticky;top:0;z-index:5}
+.hrow{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 0 6px;flex-wrap:wrap}
+h1{margin:0;font-size:20px;color:var(--r)}.sub{color:var(--mu);font-size:13px}
+nav{display:flex;gap:4px;overflow-x:auto;padding-bottom:6px}
+nav button{border:0;background:none;padding:6px 12px;border-radius:16px;cursor:pointer;white-space:nowrap;color:var(--mu);font:inherit}
+nav button.on{background:var(--r);color:#fff}nav button.ed{color:var(--b)}nav button.ed.on{background:var(--b);color:#fff}
+.tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.btn{border:1px solid var(--ln);background:#fff;padding:5px 12px;border-radius:6px;cursor:pointer;font:inherit;font-size:13px}
+.btn.pri{background:var(--r);color:#fff;border-color:var(--r)}.btn.sm{padding:2px 8px;font-size:12px}
+.pill{font-size:12px;padding:2px 8px;border-radius:10px;background:#fdecea;color:var(--er)}
+main{padding:16px 14px 80px}
+.card{background:#fff;border:1px solid var(--ln);border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.card h2{margin:0 0 10px;font-size:16px;color:var(--r)}.card h3{margin:10px 0 6px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:6px 12px}.kv b{color:var(--mu);font-weight:500}
+.pre{white-space:pre-wrap}
+table.tb{width:100%;border-collapse:collapse;font-size:13px}
+.tb th{background:#faf6f2;text-align:left;font-weight:500;color:var(--mu);padding:6px;border-bottom:1px solid var(--ln);white-space:nowrap}
+.tb td{padding:6px;border-bottom:1px solid var(--ln);vertical-align:top}
+.tb input,.tb select,.tb textarea,.fi{width:100%;border:1px solid var(--ln);border-radius:4px;padding:3px 5px;font:inherit;font-size:13px;background:#fffdfa}
+.tb textarea{min-height:34px;resize:vertical}.tb input[type=checkbox]{width:auto}
+.tb td.ops{white-space:nowrap;width:1%}
+.chip{display:inline-block;background:#eef4f9;border-radius:10px;padding:0 8px;margin:1px 3px 1px 0;font-size:12.5px;white-space:nowrap}
+.chip.free{background:#f1ece7}.chip.bad{background:#fdecea;color:var(--er)}.chip x{cursor:pointer;margin-left:4px;color:var(--mu)}
+.add{cursor:pointer;color:var(--b);font-size:12px;border:1px dashed var(--b);border-radius:10px;padding:0 7px}
+.days{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.days button{border:1px solid var(--ln);background:#fff;border-radius:14px;padding:3px 12px;cursor:pointer;font:inherit;font-size:13px}.days button.on{background:var(--tx);color:#fff}
+.chk li{margin:3px 0}.chk .err{color:var(--er)}.chk .warn{color:var(--wn)}
+.muted{color:var(--mu);font-size:12px}
+#pop{position:fixed;z-index:20;background:#fff;border:1px solid var(--ln);border-radius:8px;box-shadow:0 6px 24px #0002;width:260px;max-height:340px;display:flex;flex-direction:column}
+#pop .ls{overflow:auto;padding:4px}#pop .it{padding:4px 8px;border-radius:4px;cursor:pointer;display:flex;justify-content:space-between}
+#pop .it:hover{background:#f3eee9}#pop .it.off{color:#bbb}#pop .it.sel{background:#eef4f9}
+#modal{position:fixed;inset:0;background:#0005;z-index:25;display:flex;align-items:center;justify-content:center}#modal .card{width:min(420px,92vw);margin:0}#modal label{display:block;margin:8px 0 2px}
+.evsel{max-width:220px;border:1px solid var(--ln);border-radius:6px;padding:4px;font:inherit;font-size:13px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2b2522;color:#fff;padding:8px 16px;border-radius:20px;z-index:30}
+[hidden]{display:none!important}
+.map img{width:100%;border-radius:6px;border:1px solid var(--ln);cursor:zoom-in;display:block}.thumb{max-width:160px;max-height:110px;border-radius:4px;border:1px solid var(--ln);display:block;margin-bottom:4px}.nomap{border:2px dashed var(--ln);border-radius:6px;padding:24px;text-align:center;color:var(--mu)}
+#now{background:#fff6e5;border-top:1px solid #f0dcb4;padding:6px 0;font-size:13.5px}#now b{color:var(--r)}
+.rg td.cur{background:#fff6e5}.rg tr.cur td{background:#fff6e5}.me{background:var(--r);color:#fff}
+@media(max-width:700px){
+ .tb.v thead{display:none}.tb.v tr{display:block;border:1px solid var(--ln);border-radius:8px;margin-bottom:8px;padding:4px 8px}
+ .tb.v td{display:block;border:0;padding:3px 0}.tb.v td[data-l]:before{content:attr(data-l);display:block;color:var(--mu);font-size:11px}
+ .tb.v td:empty{display:none}
+}
+@media print{header nav,.tools,.btn,.add{display:none!important}header{position:static}}
+</style></head><body>
+<header><div class="wrap"><div class="hrow"><div><h1 id="t"></h1><div id="sub" class="sub"></div></div><div class="tools" id="tools"></div></div><nav id="tabs"></nav></div><div id="now" hidden><div class="wrap" id="nowt"></div></div></header>
+<main class="wrap" id="main"></main>
+<div id="pop" hidden></div><div id="modal" hidden></div><div id="toast" hidden></div>
+<input type="file" id="imp" accept=".json" hidden><input type="file" id="upf" accept="image/*" hidden>
+<script id="seed" type="application/json">{"maps": [{"title": "展場位置圖", "place": "全場", "img": "", "note": ""}, {"title": "報到處工作人員位置圖", "place": "報到處", "img": "", "note": ""}, {"title": "下訂處工作人員位置圖", "place": "下訂處", "img": "", "note": ""}], "settings": {"title": "2026 台北華山好婚市集", "sub": "工作人員行前通知", "venue": "華山1914文創園區（東2館）", "transit": "[開車] 100 台北市中正區八德路一段1號\n[捷運] 忠孝新生站 1 號出口／善導寺站 6 號出口", "pt": "提前繳交勞保資料", "call": ["和慈", "妞妞", "晉姍", "丁丁", "朋喬", "Abby", "劉芳"], "days": [{"k": "D0", "name": "進場日", "date": "2026-11-13", "time": "8:00–20:00"}, {"k": "D1", "name": "活動日", "date": "2026-11-14", "time": "9:00–18:30"}, {"k": "D2", "name": "活動日", "date": "2026-11-15", "time": "9:30–18:30"}], "vars": [{"k": "開門", "v": "10:00"}, {"k": "停止入場", "v": "18:00"}, {"k": "閉館", "v": "19:00"}, {"k": "撤場完成", "v": "20:00"}, {"k": "廠商數", "v": "72"}, {"k": "提袋總數", "v": "2500"}, {"k": "早鳥名額", "v": "100"}, {"k": "刮刮樂格數", "v": "1000"}, {"k": "喜餅展示家數", "v": "25"}, {"k": "兌換截止", "v": "2026/11/20（五）"}]}, "people": [{"name": "亞當", "org": "WD", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "周胖", "org": "WD", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "晉姍", "org": "WD", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "丁丁", "org": "WD", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "詩晴", "org": "WD", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "朋喬", "org": "想樂", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "劉芳", "org": "想樂", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "Abby", "org": "想樂", "phone": "", "days": {"D0": true, "D1": false, "D2": false}}, {"name": "定瀚", "org": "", "phone": "", "days": {"D0": true, "D1": false, "D2": false}}, {"name": "杜杜", "org": "", "phone": "", "days": {"D0": true, "D1": false, "D2": false}}, {"name": "Lily", "org": "", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "和慈", "org": "", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "妞妞", "org": "", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "威敏", "org": "", "phone": "", "days": {"D0": true, "D1": true, "D2": true}}, {"name": "尚志", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "沛儀", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "江如意（妞友）", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "何苡岑（妞友）", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "Ting", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "vicky", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": false}}, {"name": "孫昕妤（威友）", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": false}}, {"name": "林暐智（威友）", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": false}}, {"name": "梓煒", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "偉泓🕊️", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "何俐穎", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "阮靜霓", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "顏嘉怡 Elaine", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "Queenie", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": false}}, {"name": "劉芯薇", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "佩妏 Wendy", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "透透 Hedy", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "瑄Nimo", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "新悅", "org": "", "phone": "", "days": {"D0": false, "D1": true, "D2": true}}, {"name": "傳安", "org": "", "phone": "", "days": {"D0": false, "D1": false, "D2": true}}, {"name": "黃湘庭（威友）", "org": "", "phone": "", "days": {"D0": false, "D1": false, "D2": true}}, {"name": "珮倫", "org": "", "phone": "", "days": {"D0": false, "D1": false, "D2": true}}, {"name": "Una", "org": "", "phone": "", "days": {"D0": false, "D1": false, "D2": true}}], "sched": [{"day": "D0", "time": "8:00", "area": "警衛室", "item": "開門、場地點交", "who": ["晉姍", "丁丁", "詩晴", "朋喬"], "note": "服務處開門、拿垃圾袋\n先到先點交，點交完群組通知大家"}, {"day": "D0", "time": "8:00", "area": "全場", "item": "畫場位、貼定位點", "who": ["朋喬", "劉芳", "Abby", "晉姍", "周胖", "丁丁", "詩晴"], "note": "A組：朋喬、劉芳、Abby\nB組：晉姍、周胖、丁丁、詩晴"}, {"day": "D0", "time": "8:30", "area": "全場", "item": "靠設計進場（印刷物、指引牌）", "who": ["朋喬"], "note": "16:00 查看第一次，18:00 驗收"}, {"day": "D0", "time": "10:00", "area": "佈置", "item": "佈置廠商進場", "who": ["Abby"], "note": "確認佈置與設計畫面一致、是否需微調"}, {"day": "D0", "time": "9:00", "area": "-", "item": "地貼分類", "who": ["劉芳", "Abby"], "note": ""}, {"day": "D0", "time": "12:00前", "area": "網路架設", "item": "中華電信網路進場", "who": ["周胖"], "note": "活動時程表原寫晉姍，請確認"}, {"day": "D0", "time": "12:00", "area": "全場", "item": "背板展架位置確認、設計物核對", "who": ["朋喬", "Abby"], "note": ""}, {"day": "D0", "time": "12:00", "area": "音響", "item": "音響進場架設", "who": ["朋喬", "Abby"], "note": ""}, {"day": "D0", "time": "12:00–13:30", "area": "-", "item": "午餐時間", "who": ["晉姍"], "note": "靠設計午餐"}, {"day": "D0", "time": "12:30", "area": "-", "item": "貨運 華山收件", "who": ["晉姍", "丁丁"], "note": ""}, {"day": "D0", "time": "12:45", "area": "-", "item": "貨運 WD 出件", "who": ["尚志"], "note": "貨運留晉姍電話\n商品統一先下報到處"}, {"day": "D0", "time": "13:00", "area": "全場", "item": "比旺桌椅、紅龍進場（紅龍 32 隻）", "who": ["朋喬", "Abby"], "note": ""}, {"day": "D0", "time": "13:00–15:00", "area": "全場", "item": "貼地貼、定位貼", "who": ["劉芳", "Abby", "杜杜", "Lily"], "note": "準備場圖＋地貼（展架定位後即可開始）\n黃色膠帶：展板往外推 275cm\n婚紗、西服、珠寶再往外推 150cm"}, {"day": "D0", "time": "13:30–14:30", "area": "下訂處", "item": "紅龍運送 13 支、下訂禮品、集點兌換處物品運送", "who": ["丁丁"], "note": ""}, {"day": "D0", "time": "14:00", "area": "-", "item": "WD 物品進場", "who": ["晉姍", "丁丁"], "note": ""}, {"day": "D0", "time": "14:00–15:00", "area": "全場", "item": "廠商物品集中至報到處", "who": ["業務"], "note": "物流、黑貓宅配先集中報到處並分類"}, {"day": "D0", "time": "14:30", "area": "全場", "item": "WD 行銷人員進場", "who": ["威敏"], "note": ""}, {"day": "D0", "time": "15:00–15:45", "area": "全場", "item": "對點所有桌椅", "who": ["劉芳", "Lily"], "note": ""}, {"day": "D0", "time": "15:00–16:00", "area": "報到處", "item": "喜餅提袋搜集分類", "who": ["晉姍", "詩晴"], "note": "婚禮小物 100 個優先\n喜餅提袋 50 個一組，第一天早鳥禮先備"}, {"day": "D0", "time": "15:00–16:00", "area": "下訂處", "item": "貼抽獎券", "who": ["丁丁", "威敏"], "note": ""}, {"day": "D0", "time": "15:45–16:00", "area": "報到處", "item": "場佈、紅龍架設", "who": ["晉姍", "詩晴"], "note": ""}, {"day": "D0", "time": "16:00", "area": "全場", "item": "廠商背板架設完成點交", "who": ["朋喬"], "note": "跟 Day 點交：尺寸、黏貼、電線、電燈、插座"}, {"day": "D0", "time": "16:00", "area": "-", "item": "廠商進場", "who": ["業務"], "note": ""}, {"day": "D0", "time": "16:00–18:00", "area": "全場", "item": "報到處廠商物品分送至攤位", "who": ["業務"], "note": "廠商桌椅多 → 撤至下訂處\n桌椅少 → 通知朋喬，至下訂處領取"}, {"day": "D0", "time": "16:00–18:00", "area": "報到處", "item": "APP 兌換、早鳥禮婚禮小物", "who": ["晉姍", "詩晴"], "note": ""}, {"day": "D0", "time": "16:00–18:00", "area": "下訂處", "item": "場佈、紅龍定位、喜餅禮品", "who": ["丁丁", "威敏"], "note": "如工作位置圖"}, {"day": "D0", "time": "16:00–18:00", "area": "集點兌換處", "item": "場佈", "who": ["丁丁", "威敏"], "note": ""}, {"day": "D0", "time": "16:00–18:00", "area": "佈置區", "item": "佈置確認、喜餅就位", "who": ["朋喬"], "note": ""}, {"day": "D0", "time": "16:00–18:00", "area": "全場", "item": "指引牌", "who": ["丁丁"], "note": ""}, {"day": "D0", "time": "17:00", "area": "全場", "item": "分組巡查廠商位置是否超線", "who": ["杜杜", "定瀚"], "note": ""}, {"day": "D0", "time": "17:00", "area": "全場", "item": "巡場確認", "who": ["晉姍", "朋喬"], "note": ""}, {"day": "D0", "time": "18:00–20:00", "area": "全場", "item": "裝提袋", "who": ["全體人員"], "note": ""}, {"day": "D0", "time": "20:00", "area": "-", "item": "點交關門", "who": ["晉姍", "丁丁", "朋喬", "Abby"], "note": ""}, {"day": "D1", "time": "8:00", "area": "-", "item": "開門", "who": [], "note": ""}, {"day": "D1", "time": "9:00", "area": "報到處", "item": "工作人員集合簽到", "who": ["杜杜"], "note": ""}, {"day": "D1", "time": "9:05–9:45", "area": "-", "item": "說明工作事項", "who": ["劉芳"], "note": ""}, {"day": "D1", "time": "9:30", "area": "-", "item": "廠商早會", "who": ["亞當", "和慈", "妞妞", "朋喬"], "note": ""}, {"day": "D1", "time": "9:50–10:00", "area": "全場", "item": "定位準備開展", "who": ["全體人員"], "note": ""}, {"day": "D1", "time": "{{開門}}", "area": "全場", "item": "開場", "who": ["全體人員"], "note": ""}, {"day": "D1", "time": "{{開門}}–{{停止入場}}", "area": "全場", "item": "活動進行中", "who": ["全體人員"], "note": ""}, {"day": "D1", "time": "11:00", "area": "回收區", "item": "回收區 PT 簽到、帶領了解任務", "who": ["周胖"], "note": ""}, {"day": "D1", "time": "12:30–14:00", "area": "-", "item": "工作人員輪休用餐", "who": ["各小組長"], "note": "時間由小組長視情況決定"}, {"day": "D1", "time": "17:30–18:30", "area": "報到處", "item": "預裝明日提袋", "who": ["晉姍", "周胖"], "note": "再請業務＆門口 PT 協助"}, {"day": "D1", "time": "{{停止入場}}", "area": "入口", "item": "停止開放入場", "who": ["Abby"], "note": ""}, {"day": "D1", "time": "18:00–18:30", "area": "全場", "item": "環境清潔檢查", "who": ["亞當", "周胖"], "note": ""}, {"day": "D1", "time": "18:30", "area": "-", "item": "PT 簽退", "who": ["劉芳"], "note": ""}, {"day": "D1", "time": "18:30–19:00", "area": "兌換處", "item": "小組長會議", "who": ["詩晴"], "note": "若兌換處尚未結束，待結束後開始"}, {"day": "D1", "time": "19:00", "area": "全場", "item": "廠商最後簽單", "who": ["亞當"], "note": ""}, {"day": "D1", "time": "19:30", "area": "全場", "item": "廠商最後撤場", "who": ["亞當"], "note": ""}, {"day": "D1", "time": "20:00", "area": "-", "item": "最後離場、點交關門", "who": ["晉姍", "丁丁", "朋喬", "Abby"], "note": ""}, {"day": "D2", "time": "8:00", "area": "-", "item": "開門", "who": [], "note": ""}, {"day": "D2", "time": "9:05–9:45", "area": "-", "item": "說明工作事項", "who": ["想樂小組長"], "note": ""}, {"day": "D2", "time": "9:30", "area": "報到處", "item": "工作人員集合簽到", "who": ["劉芳"], "note": ""}, {"day": "D2", "time": "9:45–10:00", "area": "全場", "item": "定位準備開展", "who": ["全體人員"], "note": ""}, {"day": "D2", "time": "{{開門}}", "area": "全場", "item": "開場", "who": ["全體人員"], "note": ""}, {"day": "D2", "time": "{{開門}}–{{停止入場}}", "area": "全場", "item": "活動進行中", "who": ["全體人員"], "note": ""}, {"day": "D2", "time": "12:30–14:00", "area": "-", "item": "工作人員輪休用餐", "who": ["各小組長"], "note": "時間由小組長視情況決定"}, {"day": "D2", "time": "17:30–18:30", "area": "報到處", "item": "回收物整理", "who": ["周胖", "男PT"], "note": "垃圾＆回收物移至側門整理"}, {"day": "D2", "time": "17:30–18:30", "area": "報到處", "item": "物品打包、垃圾丟棄、指引牌回收", "who": ["朋喬", "愛麗絲"], "note": "多餘喜餅袋同品牌集中，詢問業務是否退回廠商\n打包完成運至下訂處"}, {"day": "D2", "time": "{{停止入場}}", "area": "入口", "item": "停止開放入場", "who": ["Una"], "note": "撤場表原寫朋喬，請確認"}, {"day": "D2", "time": "18:00–18:30", "area": "全場", "item": "環境清潔（男生 PT）", "who": ["全體人員"], "note": ""}, {"day": "D2", "time": "18:00–19:30", "area": "全場", "item": "廠商資料袋回收（印章、工作證）", "who": ["和慈", "妞妞"], "note": "少一樣物品罰廠商 $100\n資料袋內垃圾拿出"}, {"day": "D2", "time": "18:30", "area": "-", "item": "PT 簽退", "who": ["劉芳"], "note": ""}, {"day": "D2", "time": "18:30", "area": "佈置區", "item": "所有佈置拆除", "who": ["Abby"], "note": "WD 喜餅小卡、喜餅盒回收"}, {"day": "D2", "time": "19:00", "area": "全場", "item": "廠商最後簽單", "who": ["亞當"], "note": ""}, {"day": "D2", "time": "19:30", "area": "集點兌換處", "item": "無框畫清點打包", "who": ["詩晴"], "note": "完成運至下訂處"}, {"day": "D2", "time": "19:30", "area": "下訂兌換處", "item": "物品打包封箱", "who": ["沛儀"], "note": "完成運至下訂處"}, {"day": "D2", "time": "19:30", "area": "全場", "item": "立地指引牌拆除", "who": ["丁丁"], "note": ""}, {"day": "D2", "time": "19:30", "area": "全場", "item": "與比旺對點桌椅", "who": ["朋喬", "Abby"], "note": ""}, {"day": "D2", "time": "19:30–20:00", "area": "全場", "item": "場地復原、最後環境清潔", "who": ["全體人員"], "note": ""}, {"day": "D2", "time": "{{撤場完成}}", "area": "全場", "item": "廠商最後撤場", "who": ["亞當"], "note": "活動時程表寫 19:30，撤場表寫 20:00，請確認"}, {"day": "D2", "time": "20:00–21:00", "area": "全場", "item": "場地點交", "who": ["晉姍", "丁丁", "朋喬", "Abby"], "note": "時程表 20:00／撤場表 21:00，請確認"}], "posts": [{"group": "指引", "leader": ["朋喬"], "area": "（開門前）門口指引", "loc": "門口外圍", "n": 1, "as": {"D1": ["杜杜"], "D2": []}, "duty": "1. {{D1}}、{{D2}} 9:30–9:50 於門口 standby 將新人整隊\n2. 想提早進場的新人做擋門，告知 {{開門}} 正式開放進場", "script": "「您好，請問是來參加婚展的嗎？」\n是 →「我們活動將準時於 {{開門}} 開門入場，可以先打開入場 QR code，在這邊排隊稍候唷！」\n否 →「歡迎掃 QR code 免費報名參加唷！」"}, {"group": "報到處組", "leader": ["朋喬"], "area": "外圍指引（出口）", "loc": "門口外圍", "n": 1, "as": {"D1": ["偉泓🕊️"], "D2": ["偉泓🕊️"]}, "duty": "1. 協助新人指引至會場\n2. 協助未報名新人完成線上報名\n3. 協助新人開啟入場 QR code（已報名者掃快速報名碼會直接顯示）\n4. 每組新人一個 QR code 即可\n5. 再次進場的新人引導至出口處", "script": "➤ 有報名：「可以先將 QR code 打開，從另一側入口處進場唷～」\n➤ 再次進場：「再次進場走這個通道唷～」\n➤ 廠商沒戴工作證：「進出要記得配戴工作人員證唷～」"}, {"group": "報到處組", "leader": ["朋喬"], "area": "紅龍指引（入口）", "loc": "門口外圍", "n": 1, "as": {"D1": ["阮靜霓"], "D2": ["阮靜霓"]}, "duty": "1. 指引新人至紅龍排隊進場\n2. 提醒新人開啟入場 QR code\n3. 廠商、工作人員、再次進場、人工報到（長輩等）走另一側出入口", "script": "➤ 已開好：「您好，這邊排隊進場參加婚展，記得將入場 QR code 打開謝謝！」\n➤ 未報名／未開好：「歡迎掃 QR code 免費報名！報名先在側邊完成再排隊謝謝！」\n➤ 廠商／再次進場／人工報到：「幫我走另一個通道這邊唷，謝謝！」"}, {"group": "報到處組", "leader": ["朋喬"], "area": "掃碼", "loc": "入口處", "n": 1, "as": {"D1": ["Queenie"], "D2": ["Una"]}, "duty": "1. 掃描新人 QR code 入場（協助蓋手章）\n2. 指引至櫃檯領取出席禮\n＊報到區人多 → 放慢掃碼；排隊人龍長 → 加速掃碼", "script": "「您好，這邊掃 QR code 入場，記得到報到區領取出席禮！」\n➤ 無法出示或掃碼不通過：「沒關係！請到前方櫃檯人工報到處幫您處理唷」"}, {"group": "報到處組", "leader": ["朋喬"], "area": "人工報到／出席禮", "loc": "人工報到", "n": 1, "as": {"D1": ["周胖"], "D2": ["周胖"]}, "duty": "1. 處理無法掃碼、無法報到者\n2. 補充提袋\n3. 新人寄放物品：留姓名電話綁在物品上", "script": "「需要人工報到嗎？請問有先線上報名嗎？」\n➤ 有：「麻煩提供手機末三碼，為您人工報到」\n➤ 沒有：「這邊幫我掃 QR code 報名唷」\n發提袋：「這是今天的出席禮提袋，前方為您做活動講解唷！」"}, {"group": "報到處組", "leader": ["朋喬"], "area": "提袋發放", "loc": "提袋發放區", "n": 1, "as": {"D1": ["梓煒"], "D2": ["梓煒"]}, "duty": "發放活動手冊＆提袋\n＊確保每位新人都經過講解後才入場", "script": "「這是今天的活動手冊＆提袋，前方為您做活動講解唷！」（手往前指引至解說人員）"}, {"group": "報到處組", "leader": ["朋喬"], "area": "引導人員", "loc": "提袋發放區", "n": 1, "as": {"D1": ["透透 Hedy"], "D2": ["透透 Hedy"]}, "duty": "告知新人有問題可找有號碼牌的服務人員\n＊確保每位新人都經過講解後才入場", "script": "「請到 XX（1~4）號，解說人員為您做活動講解唷！」\n解說人員都在忙：「請這邊稍等一下，我們安排講解人員為您解說喔！」"}, {"group": "報到處組", "leader": ["朋喬"], "area": "協助補貨", "loc": "提袋發放區", "n": 1, "as": {"D1": ["丁丁"], "D2": ["丁丁"]}, "duty": "1. 協助補充提袋\n2. 16:00 後至下訂處協助", "script": ""}, {"group": "報到處組", "leader": ["朋喬"], "area": "APP 下載推廣", "loc": "報到處", "n": 1, "as": {"D1": ["林暐智（威友）"], "D2": ["珮倫"]}, "duty": "協助新人下載 APP 玩刮刮樂", "script": "1. 協助下載好婚市集 APP（桌立牌、手冊都有 QR code）\n2. 下載完成在手冊「已兌換」欄打勾（一組限一次）\n3. 新人隨機挑一格刮刮樂，依數字給禮品\n\n＊獎品編號\n{{刮刮樂編號}}"}, {"group": "報到處組", "leader": ["朋喬", "劉芳"], "area": "活動解說（1~4 號）", "loc": "解說區", "n": 3, "as": {"D1": ["Lily", "顏嘉怡 Elaine", "瑄Nimo"], "D2": ["Lily", "顏嘉怡 Elaine", "瑄Nimo"]}, "duty": "1. 別上 1~4 號號碼牌做活動解說\n2. 隨時注意新人問題\n3. 觀察人流，引導至人少處", "script": "「您好，這是今天的活動手冊」（可順勢幫新人翻開）\nA【出席禮】好婚採購金、喜帖折價券在手冊內；下載 APP 憑手冊至報到處玩刮刮樂\nB【集點禮】靠櫃諮詢廠商蓋章，集滿兌換：\n{{集點禮}}\nC【下訂禮】下訂券 1 張：婚禮工作人員紅包袋組；2 張：抽抽樂 1 次；3 張：2 次，以此類推\nD【喜餅區】{{喜餅展示家數}} 家人氣喜餅展示盒\nE【每日早鳥】每日前 {{早鳥名額}} 名進場：30分IGI裸鑽＋皇樓禮盒"}, {"group": "主題區", "leader": [], "area": "主題區互動", "loc": "主題區", "n": 1, "as": {"D1": ["新悅"], "D2": ["新悅"]}, "duty": "1. 協助展區互動、拍照、投票\n2. 推廣喜餅大賞", "script": "「您好，這邊可以幫你們拍照喔！」\n喜餅區：禮盒旁有喜餅小卡，掃 QR code 可看鑑定團文章\n新人在找喜餅：「有在找哪一類的喜餅嗎？」→ 依回答指引禮盒位置"}, {"group": "回收組", "leader": ["周胖"], "area": "回收區", "loc": "回收區", "n": 2, "as": {"D1": ["何俐穎", "劉芯薇"], "D2": ["何俐穎", "劉芯薇"]}, "duty": "工作時間 11:00–20:00\n1. 引導廠商自行分類\n2. 紙箱多可用推車分批送至回收場", "script": ""}, {"group": "獎品兌換組", "leader": [], "area": "無框畫兌換（25點）", "loc": "禮品兌換處", "n": 2, "as": {"D1": ["Ting", "孫昕妤（威友）"], "D2": ["Ting", "黃湘庭（威友）"]}, "duty": "1. 兌換無框畫（25 點）\n2. 好友邀請兌換\n3. 協助填寫意見回饋表", "script": "「請出示活動手冊，幫您核銷喔！」（劃掉印章）\n「這是無框畫兌換小卡，請在期限內掃 QR code 填表兌換！」\n「麻煩掃 QR code 填寫意見回饋！」\n\n注意事項：\n1. 兌換期限至 {{兌換截止}}，逾期無法兌換\n2. 依填單順序製作寄送，約 30 個工作天\n3. 加大尺寸／加購可於表單內加購\n4. 照片依上傳為主，不製作似顏繪\n5. 郵局寄出，請留意到貨"}, {"group": "下訂兌換組", "leader": ["詩晴"], "area": "下訂登記", "loc": "下訂處", "n": 4, "as": {"D1": ["詩晴", "沛儀", "何苡岑（妞友）", "vicky"], "D2": ["詩晴", "沛儀", "何苡岑（妞友）", "傳安"]}, "duty": "協助新人下訂登記\n16:00 後丁丁支援（需提前請 Call 機找晉姍）", "script": "「您好，今天有下訂嗎？請出示下訂券，手機末三碼是？」\n「下訂廠商為＿＿，金額為＿＿，正確嗎？」\n1 點：「憑手冊印章到旁邊兌換婚禮工作人員紅包袋組！」\n2 點以上：「憑手冊印章到旁邊玩抽抽樂！」\n\n注意：1 張下訂券蓋 1 點；一個品牌最多一張下訂券"}, {"group": "下訂兌換組", "leader": ["詩晴"], "area": "抽抽樂兌換", "loc": "下訂處", "n": 2, "as": {"D1": ["威敏", "江如意（妞友）"], "D2": ["威敏", "江如意（妞友）"]}, "duty": "1. 說明獎品規則\n2. 協助新人抽獎\n3. 補抽獎籤", "script": "「請出示活動手冊確認點數」\n【1 點】紅包袋組：「一組有這些款式，加購伴娘伴郎款一組 $100！」\n【2 點以上】「請點選螢幕抽取禮物」\n➤ 下訂處兌換：「這是您抽到的小禮物」\n➤ 攤位兌獎：「請憑兌換券至廠商攤位兌獎，遺失不補發」\n➤ 廠商後續聯繫：「請在簽收單簽收，日後到門市兌換，保管好扭蛋券」\n\n注意：大獎兌出請 Call 機通知所有小組長"}, {"group": "機動組", "leader": ["晉姍"], "area": "全場支援", "loc": "全場", "n": 2, "as": {"D1": ["晉姍", "朋喬"], "D2": []}, "duty": "需熟知全場活動，隨時支援", "script": ""}, {"group": "業務組", "leader": [], "area": "業務", "loc": "全場", "n": 3, "as": {"D1": ["和慈", "妞妞"], "D2": []}, "duty": "", "script": ""}], "prizes": [{"type": "早鳥", "place": "報到處", "vendor": "ARIEL 艾麗兒珠寶", "item": "30分裸鑽券", "qty": 200, "note": ""}, {"type": "早鳥", "place": "報到處", "vendor": "皇樓", "item": "匠心花意禮盒", "qty": 210, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "WeddingDay", "item": "旋轉書約夾", "qty": 2, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "ARIEL 艾麗兒珠寶", "item": "CZ鑽項鍊", "qty": 50, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "尋覓蜜", "item": "瑪德蓮緞帶禮盒", "qty": 12, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "愛拍貼", "item": "精美拍立得", "qty": 20, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "WeddingDay", "item": "紳士領結", "qty": 23, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "印卡讚", "item": "AI 似顏繪＋專屬相框", "qty": 30, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "金色三麥", "item": "啤酒招待券", "qty": 43, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "啾啾鳥咖啡", "item": "經典咖啡包", "qty": 50, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "印卡讚", "item": "婚禮報四連拍＋收納袋", "qty": 50, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "WeddingDay", "item": "書約夾", "qty": 50, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "Lumia", "item": "擴香石", "qty": 100, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "Lumia", "item": "可麗露", "qty": 100, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "拍拍印", "item": "AI 似顏繪＋精美相框", "qty": 100, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "拍拍印", "item": "客製調香", "qty": 100, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "墨可", "item": "幸福婚禮小物盒", "qty": 100, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "WeddingDay", "item": "吸水杯墊", "qty": 31, "note": ""}, {"type": "刮刮樂", "place": "報到處", "vendor": "WeddingDay", "item": "御守資料夾", "qty": 139, "note": ""}, {"type": "報到處備品", "place": "報到處", "vendor": "WeddingDay", "item": "1000洞刮刮樂＋工具", "qty": 1, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "WeddingDay", "item": "婚禮工作人員紅包袋（1點下訂，發完改發書約）", "qty": 1000, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "WeddingDay", "item": "備用書約", "qty": 200, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "美加醫美", "item": "一番賞", "qty": 200, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "士林萬麗", "item": "餐券", "qty": 7, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "伊莎貝爾", "item": "永恆極光L號", "qty": 5, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "伊莎貝爾", "item": "夢幻光點", "qty": 4, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "Aunt Stella 詩特莉", "item": "戀星璀璨", "qty": 30, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "ARIEL 艾麗兒珠寶", "item": "1克拉IGI裸鑽（兌換券）", "qty": 10, "note": ""}, {"type": "下訂處備品", "place": "下訂處", "vendor": "ARIEL 艾麗兒珠寶", "item": "30分IGI裸鑽（兌換券）", "qty": 55, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "Aunt Stella 詩特莉", "item": "喜餅提袋", "qty": 200, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "enchantée 樂朗奇法式手工喜餅", "item": "喜餅提袋", "qty": 150, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "Ooh La Love Wedding", "item": "喜餅提袋", "qty": 200, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "Chochoco Wedding 法式手工喜餅", "item": "喜餅提袋", "qty": 200, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "but.(we found love)當代手工喜餅", "item": "喜餅提袋", "qty": 200, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "Velvet Patisserie 法絨法式手工甜點", "item": "喜餅提袋", "qty": 250, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "RIVON 禮坊", "item": "喜餅提袋", "qty": 150, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "金格 KÖNIG", "item": "喜餅提袋", "qty": 150, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "波波諾諾 bobonono", "item": "喜餅提袋", "qty": 150, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "七見櫻堂", "item": "喜餅提袋", "qty": 150, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "CUPETIT 卡柏蒂精品甜點", "item": "喜餅提袋", "qty": 100, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "Candy Wedding 法式手工喜餅", "item": "喜餅提袋", "qty": 150, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "伊莎貝爾(展)", "item": "喜餅提袋", "qty": 100, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "皇樓(展)", "item": "喜餅提袋", "qty": 100, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "猫猫喵喵", "item": "喜餅提袋", "qty": 150, "note": ""}, {"type": "喜餅提袋", "place": "報到處", "vendor": "太保制餅", "item": "喜餅提袋", "qty": 50, "note": ""}], "points": [{"pts": 5, "item": "韓式三連拍", "at": "拍拍印"}, {"pts": 10, "item": "伴伴酒 婚禮派對調酒", "at": "印卡讚"}, {"pts": 15, "item": "甜蜜毛巾小熊", "at": "華紳訂製西服"}, {"pts": 20, "item": "可麗露＆擴香石", "at": "LUMIA"}, {"pts": 23, "item": "精美小禮盒", "at": "尋覓蜜"}, {"pts": 25, "item": "WD 客製無框畫", "at": "集點好禮兌換處"}], "draws": [{"vendor": "ARIEL 艾麗兒珠寶", "item": "1克拉IGI裸鑽（需訂制戒檯）", "value": "99,000", "b1": 2, "b2": 3, "b3": 5, "late": ""}, {"vendor": "阿丹旅遊", "item": "馬爾地夫居民島蜜月 買一送一（機票另計）", "value": "65,000", "b1": "", "b2": "", "b3": "", "late": 1}, {"vendor": "ARIEL 艾麗兒珠寶", "item": "50分IGI裸鑽（需訂制戒檯）", "value": "49,900", "b1": 5, "b2": 5, "b3": 45, "late": ""}, {"vendor": "L’AMOUR JEWELRY", "item": "1克拉IGI裸鑽（需訂制戒檯）", "value": "36,800", "b1": 15, "b2": 15, "b3": "", "late": ""}, {"vendor": "Double Yu 攝影工作室", "item": "婚禮攝影服務", "value": "30,000", "b1": 1, "b2": "", "b3": "", "late": ""}, {"vendor": "L’AMOUR JEWELRY", "item": "銀對戒", "value": "6,800", "b1": 15, "b2": 15, "b3": "", "late": ""}, {"vendor": "華紳訂製西服", "item": "紳士西服免費租借", "value": "3,800", "b1": 1, "b2": 2, "b3": "", "late": ""}, {"vendor": "i Suit 科技量身", "item": "紳士西服免費租借", "value": "3,800", "b1": 2, "b2": 1, "b3": "", "late": ""}, {"vendor": "印卡讚 拌伴酒", "item": "Line 電子喜帖大禮包", "value": "3,000", "b1": 5, "b2": 5, "b3": "", "late": ""}, {"vendor": "JYDiamond 羅仕珠寶", "item": "天然珍珠耳環", "value": "2,280", "b1": 5, "b2": 5, "b3": "", "late": ""}, {"vendor": "台北士林萬麗酒店", "item": "士林廚房餐券", "value": "1,680", "b1": 4, "b2": 3, "b3": "", "late": ""}, {"vendor": "i Suit 科技量身", "item": "紳士領帶", "value": "1,280", "b1": 80, "b2": 80, "b3": 40, "late": ""}, {"vendor": "美加醫美", "item": "婚前保養一番賞", "value": "", "b1": 80, "b2": 80, "b3": 40, "late": ""}, {"vendor": "伊莎貝爾", "item": "夢幻光點喜餅禮盒", "value": "950", "b1": 2, "b2": 2, "b3": "", "late": ""}, {"vendor": "HEYMORIA 好憶甜點", "item": "九宮格鐵盒", "value": "968", "b1": 5, "b2": 5, "b3": "", "late": ""}, {"vendor": "伊莎貝爾", "item": "永恆極光喜餅禮盒", "value": "780", "b1": 3, "b2": 2, "b3": "", "late": ""}, {"vendor": "Aunt Stella 詩特莉", "item": "戀星璀璨喜餅禮盒", "value": "760", "b1": 20, "b2": 10, "b3": "", "late": ""}], "prep": [{"item": "廠商袋（{{廠商數}}家）", "who": ["詩晴"]}, {"item": "扭蛋券印製", "who": ["丁丁"]}, {"item": "工作人員講稿影印", "who": []}, {"item": "工作人員簽到表", "who": []}, {"item": "廠商地貼", "who": []}, {"item": "Call 機充電", "who": ["晉姍"]}, {"item": "廠商標籤紙", "who": ["丁丁"]}, {"item": "工作人員證", "who": ["丁丁"]}], "cards": [{"place": "下訂處", "who": ["丁丁", "威敏"], "steps": "1. 桌椅定位，詳如場圖（桌子鋪桌巾）\n2. 13 隻紅龍架設，詳如場圖\n3. 票券定位，方便工作人員兌換\n4. 禮品定位：相同禮品放一起，紙箱外標名稱\n5. 少量不同禮品陳列在桌上\n6. 巡視桌上、地上垃圾"}, {"place": "報到處", "who": ["晉姍", "詩晴"], "steps": "1. 桌椅定位，詳如場圖（桌子鋪桌巾）\n2. 19 隻紅龍架設，詳如場圖\n3. 倉庫定位：垃圾區、回收區、禮品區、喜餅袋區\n4. 喜餅提袋預裝 500 個，每袋放活動手冊\n5. 早鳥禮每日 {{早鳥名額}} 份（桌上、桌下、展板前皆可放）\n6. 品牌提袋 50 個一組交替擺放\n7. 清點喜餅提袋是否都運至報到處"}], "fixed": [{"sec": "行前須知", "title": "服裝規定", "body": "全身黑（鞋子可不用）\n・LOGO 不能超過 5cm×5cm\n・裙子不能短於膝上\n請務必遵守"}, {"sec": "行前須知", "title": "注意事項", "body": "1. 活動期間不提供杯水，請自備水壺（有飲水機）\n2. 突發狀況請直接與小組長反應\n3. 臨時異動以小組長說明為主\n4. 請務必遵守服裝規定"}, {"sec": "行前須知", "title": "Call 機使用規範", "body": "1. 壓按鈕 2 秒後開始說話\n2. 報上自己姓名、想找誰（例：我是亞當，子馨在嗎？）\n3. 布達完畢，接收者回覆「收到！」"}, {"sec": "行前須知", "title": "小組長晨會流程", "body": "9:00–9:10 完成簽到＆確認人員\n9:10–9:30 各組帶開介紹＆練習\n9:30 門口指引提前到場新人排隊\n9:30–9:45 實際路線帶領（門口 → 喜餅區，帶說詞走一次）\n9:45–9:50 上廁所喝水\n9:50 各組就定位；掃碼開放、提袋人員整隊\n{{開門}} 準時開門"}, {"sec": "行前須知", "title": "小組長需佈達項目", "body": "・服裝儀容：確認組員依規範穿著\n・活動時間：{{開門}}–{{停止入場}}，{{停止入場}} 停止入場，{{閉館}} 閉館\n・報到：QR code 掃碼，每組新人一個 QR code，每人都要蓋手章\n・集點：靠櫃諮詢蓋章，每個廠商編號不可重複蓋\n・下訂禮：單筆訂單超過 1,000，廠商給下訂券一張（單一廠商限一張）\n・重複進場：憑手章\n・場地資訊：洗手間、出入口動線\n・系統：工讀生密碼放群組\n・垃圾集中區"}, {"sec": "時程", "title": "進場注意事項", "body": "・桌椅有多，請廠商運至下訂處並登記\n・加燈請廠商自行處理或聯繫業務窗口\n・燈不亮找朋喬\n・廠商寄件抵達先集中報到處，紙箱寫廠商名稱，晉姍確認數量後運至指定位置"}, {"sec": "時程", "title": "垃圾處理方式", "body": "a. 可回收：紙箱、寶特瓶、鐵鋁罐\nb. 不可回收：便當盒、飲料杯\nc. 廚餘：一定要分類另外裝\nd. 場地不收：玻璃、展板、花材、帆布、保麗龍、泡綿、木頭、地毯、電線，請廠商自行帶走"}, {"sec": "時程", "title": "打包與撤場", "body": "1. 紙箱外寫內容物＆數量\n2. 打包完成統一運至指定集中處\n＊務必於 {{撤場完成}} 前完成撤場"}, {"sec": "禮品活動", "title": "早鳥禮", "body": "每日前 {{早鳥名額}} 名進場新人：30分IGI裸鑽＋皇樓喜餅禮盒"}, {"sec": "禮品活動", "title": "出席禮", "body": "好婚採購金、喜帖折價券：於活動手冊內\n下載 APP：憑手冊至報到處玩刮刮樂"}, {"sec": "禮品活動", "title": "下訂禮", "body": "活動期間完成下訂，憑下訂券至兌換處：\n1 張：婚禮工作人員紅包袋組\n2 張：幸福加滿抽抽樂 1 次\n3 張：2 次，以此類推"}, {"sec": "禮品活動", "title": "無框畫（25點）", "body": "25 點兌換無框畫小卡，於 {{兌換截止}} 前掃 QR code 填單，製作完成寄出\n加購：原商品加大 +100／加購小尺寸 +200／加購大尺寸 +300"}, {"sec": "禮品活動", "title": "便利籤注意事項", "body": "1. 最大獎項於最後一天中午貼上背板\n2. 獎品券都有標兌換方式：下訂處兌換／攤位兌換／廠商後續聯繫\n3. 廠商攤位已沒人：請新人留姓名電話、保留獎品券，資料統一交亞當\n4. 已抽便利籤或已領 1 點下訂禮，記得在手冊劃掉印章"}]}</script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SEED=JSON.parse($('seed').textContent);
+/* ▼▼▼ 只要改這一行：貼上 Apps Script 部署後的網址（結尾 /exec） ▼▼▼ */
+const API='https://script.google.com/macros/s/AKfycbwBCxV4XY2IBsQiTLCWW_7lUpkR751KILB-skkplITzmq2-0ejfCDU60EtpZlqitHZIKQ/exec';
+/* ▲▲▲▲▲▲ */
+const GAS=/^https:\/\/script\.google\.com\//.test(API);
+async function call(fn,...args){if(!GAS)throw new Error('offline');const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({fn,args}),redirect:'follow'});const j=await r.json();if(!j.ok)throw new Error(j.error);return j.data}
+const TYPES=['早鳥','刮刮樂','下訂處備品','報到處備品','喜餅提袋'],PLACES=['報到處','下訂處','集點兌換處'],SECS=['行前須知','時程','禮品活動'];
+let upTarget='',admin=false,eid=null,events=[],baseUrl='',S,ver=0,edit=false,dirty=false,pw='',tab='info',dayF='all',me='',popCtx=null;
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+/* ---------- helpers ---------- */
+const days=()=>S.settings.days, act=()=>days().filter(d=>/活動/.test(d.name));
+const WK='日一二三四五六';
+function dl(k){const d=days().find(x=>x.k===k);if(!d)return k||'';if(!d.date)return d.name;const t=new Date(d.date+'T00:00');return isNaN(t)?d.date:`${t.getMonth()+1}/${t.getDate()}（${WK[t.getDay()]}）`}
+const vars=()=>Object.fromEntries(S.settings.vars.map(v=>[v.k,v.v]));
+const num=x=>Number(String(x??'').replace(/,/g,''))||0;
+const P=()=>Object.fromEntries(S.people.map(p=>[p.name,p]));
+function scratch(){let n=1;return S.prizes.filter(x=>x.type==='刮刮樂').map(x=>{const q=num(x.qty),r={...x,from:n,to:n+q-1};n+=q;return r})}
+const pad=n=>String(n).padStart(3,'0');
+function comp(k){
+ const v=vars();
+ if(k in v)return v[k];
+ if(k==='展名')return S.settings.title;
+ if(days().some(d=>d.k===k))return dl(k);
+ if(k==='集點禮')return S.points.map(p=>`▸${p.pts}點：${p.item}${p.at?`（兌換：${p.at}）`:''}`).join('\n');
+ if(k==='刮刮樂編號')return scratch().map(x=>`${pad(x.from)}–${pad(x.to)}：${x.vendor}-${x.item}`).join('\n');
+ if(k==='活動日數')return String(act().length);
+ return null;
+}
+const V=s=>String(s??'').replace(/\{\{([^}]+)\}\}/g,(m,k)=>{const r=comp(k.trim());return r==null?m:r});
+const txt=s=>esc(V(s)).replace(/\n/g,'<br>');
+function gp(o,p){return p.split('.').reduce((a,k)=>a==null?a:a[k],o)}
+function sp(o,p,v){const ks=p.split('.');let a=o;ks.slice(0,-1).forEach(k=>{if(a[k]==null||typeof a[k]!=='object')a[k]={};a=a[k]});a[ks.at(-1)]=v}
+function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2600)}
+function mark(){if(!dirty){dirty=true;head()}}
+
+/* ---------- table engine ---------- */
+// col: {f,l,t:'text|area|num|sel|day|ppl|chk|ro',o:[opts],d:dayKey,ro:fn}
+function colsOf(c){
+ const C={
+  sched:[{f:'day',l:'日',t:'day',e:1},{f:'time',l:'時間'},{f:'area',l:'區域'},{f:'item',l:'事項',t:'area'},{f:'who',l:'負責',t:'ppl'},{f:'note',l:'備註',t:'area'}],
+  posts:[{f:'group',l:'組別'},{f:'leader',l:'小組長',t:'ppl'},{f:'area',l:'崗位'},{f:'loc',l:'位置'},{f:'n',l:'人數',t:'num'},...act().map(d=>({f:'as.'+d.k,l:dl(d.k),t:'ppl',d:d.k})),{f:'duty',l:'工作內容',t:'area'},{f:'script',l:'台詞',t:'area'}],
+  prizes:[{f:'type',l:'類型',t:'sel',o:TYPES},{f:'place',l:'存放',t:'sel',o:PLACES},{f:'vendor',l:'廠商'},{f:'item',l:'品項'},{f:'qty',l:'數量',t:'num'},{f:'note',l:'備註'}],
+  points:[{f:'pts',l:'點數',t:'num'},{f:'item',l:'禮品'},{f:'at',l:'兌換處'}],
+  draws:[{f:'vendor',l:'廠商'},{f:'item',l:'獎項'},{f:'value',l:'價值'},{f:'b1',l:'第一批',t:'num'},{f:'b2',l:'第二批',t:'num'},{f:'b3',l:'第三批',t:'num'},{f:'late',l:'最後放入',t:'num'},{f:'_t',l:'總數',t:'ro',ro:r=>num(r.b1)+num(r.b2)+num(r.b3)+num(r.late)}],
+  prep:[{f:'item',l:'項目'},{f:'who',l:'負責',t:'ppl'}],
+  maps:[{f:'img',l:'圖片',t:'img'},{f:'title',l:'標題'},{f:'place',l:'顯示在',t:'sel',o:['全場',...PLACES,'其他']},{f:'note',l:'說明',t:'area'}],
+  rot:[{f:'day',l:'日',t:'day'},{f:'group',l:'組別'},{f:'start',l:'開始',t:'time'},{f:'end',l:'結束',t:'time'},{f:'post',l:'崗位'},{f:'who',l:'人員',t:'ppl'}],
+  cards:[{f:'place',l:'區域',t:'sel',o:PLACES},{f:'who',l:'負責',t:'ppl'},{f:'steps',l:'任務',t:'area'}],
+  fixed:[{f:'sec',l:'放在',t:'sel',o:SECS},{f:'title',l:'標題'},{f:'body',l:'內容（可用 {{變數}}）',t:'area'}],
+  people:[{f:'name',l:'姓名'},{f:'org',l:'單位'},{f:'phone',l:'電話'},...days().map(d=>({f:'days.'+d.k,l:dl(d.k),t:'chk'})),{f:'_n',l:'任務數',t:'ro',ro:r=>taskCount(r.name)}],
+  vars:[{f:'k',l:'變數名稱'},{f:'v',l:'內容'}],
+  days:[{f:'k',l:'代號'},{f:'name',l:'名稱（含「活動」=活動日）'},{f:'date',l:'日期',t:'date'},{f:'time',l:'時段'}]
+ };return C[c]}
+function arr(c){return c==='vars'||c==='days'?S.settings[c]:S[c]}
+function ppl(list,day,c,i,f){
+ const Pm=P();
+ let h=(list||[]).map((n,j)=>{const p=Pm[n],bad=p&&day&&!(p.days||{})[day];
+  return `<span class="chip${p?'':' free'}${bad?' bad':''}" ${bad?'title="當天未勾出勤"':''}>${esc(n)}${edit?`<x data-rm="${c}|${i}|${f}|${j}">×</x>`:''}</span>`}).join('');
+ if(edit)h+=`<span class="add" data-pick="${c}|${i}|${f}|${day||''}">＋</span>`;
+ return h;
+}
+function cell(c,r,i,col){
+ const v=gp(r,col.f),day=col.d||(col.t==='ppl'&&r.day)||'';
+ if(col.t==='ro')return esc(col.ro(r));
+ if(col.t==='img')return edit?`${v?`<img class="thumb" src="${esc(imgUrl(v))}">`:''}<button class="btn sm" data-up="${c}|${i}">${v?'更換':'上傳'}圖片</button>${v?` <button class="btn sm" data-rmimg="${c}|${i}">移除</button>`:''}`:(v?`<img class="thumb" src="${esc(imgUrl(v))}">`:'');
+ if(col.t==='ppl')return ppl(v,day,c,i,col.f);
+ if(!edit){if(col.t==='chk')return v?'✓':'';if(col.t==='day')return esc(dl(v));return txt(v)}
+ const a=`data-c="${c}" data-i="${i}" data-f="${col.f}"`;
+ if(col.t==='area')return `<textarea ${a} rows="${Math.min(8,String(v??'').split('\n').length)}">${esc(v)}</textarea>`;
+ if(col.t==='chk')return `<input type="checkbox" ${a} ${v?'checked':''}>`;
+ if(col.t==='sel'||col.t==='day'){const o=col.t==='day'?days().map(d=>[d.k,dl(d.k)]):col.o.map(x=>[x,x]);return `<select ${a}><option></option>${o.map(([k,l])=>`<option value="${esc(k)}" ${k===v?'selected':''}>${esc(l)}</option>`).join('')}</select>`}
+ return `<input ${a} type="${col.t==='num'?'number':col.t==='date'?'date':col.t==='time'?'time':'text'}" value="${esc(v)}" ${col.f==='name'&&c==='people'?`data-old="${esc(v)}"`:''}>`;
+}
+function table(c,filter=()=>true,opt={}){
+ const cols=colsOf(c).filter(x=>edit||!x.e).filter(x=>!(opt.hide||[]).includes(x.f)),A=arr(c);
+ const idx=A.map((r,i)=>i).filter(i=>filter(A[i]));
+ if(!edit&&!idx.length)return '<div class="muted">（無）</div>';
+ let h=`<table class="tb ${edit?'':'v'}"><thead><tr>${cols.map(x=>`<th>${esc(x.l)}</th>`).join('')}${edit?'<th></th>':''}</tr></thead><tbody>`;
+ idx.forEach(i=>{h+=`<tr>${cols.map(x=>`<td data-l="${esc(x.l)}">${cell(c,A[i],i,x)}</td>`).join('')}${edit?`<td class="ops"><button class="btn sm" data-mv="${c}|${i}|-1">↑</button><button class="btn sm" data-mv="${c}|${i}|1">↓</button><button class="btn sm" data-del="${c}|${i}">✕</button></td>`:''}</tr>`});
+ h+='</tbody></table>';
+ if(edit)h+=`<button class="btn sm" style="margin-top:6px" data-addrow="${c}" data-preset='${esc(JSON.stringify(opt.preset||{}))}'>＋新增一列</button>`;
+ return h;
+}
+
+/* ---------- checks ---------- */
+function used(){
+ const Pm=P(),u={};days().forEach(d=>u[d.k]=new Set());
+ S.sched.forEach(r=>(r.who||[]).forEach(n=>Pm[n]&&u[r.day]&&u[r.day].add(n)));
+ S.posts.forEach(r=>act().forEach(d=>{(gp(r,'as.'+d.k)||[]).forEach(n=>u[d.k].add(n));(r.leader||[]).forEach(n=>Pm[n]&&(Pm[n].days||{})[d.k]&&u[d.k].add(n))}));
+ S.rot.forEach(r=>(r.who||[]).forEach(n=>Pm[n]&&u[r.day]&&u[r.day].add(n)));
+ return u;
+}
+function taskCount(n){let c=0;S.rot.forEach(r=>(r.who||[]).includes(n)&&c++);S.sched.forEach(r=>(r.who||[]).includes(n)&&c++);S.posts.forEach(r=>{(r.leader||[]).includes(n)&&c++;act().forEach(d=>(gp(r,'as.'+d.k)||[]).includes(n)&&c++)});S.cards.forEach(r=>(r.who||[]).includes(n)&&c++);S.prep.forEach(r=>(r.who||[]).includes(n)&&c++);return c}
+function checks(){
+ const o=[],Pm=P(),v=vars(),E=m=>o.push(['err',m]),W=m=>o.push(['warn',m]);
+ S.sched.forEach(r=>{(r.who||[]).forEach(n=>{const p=Pm[n];if(p&&!(p.days||{})[r.day])E(`${n}：排在 ${dl(r.day)} ${V(r.time)}「${V(r.item)}」，但當天沒勾出勤`)});if(!(r.who||[]).length)W(`${dl(r.day)} ${V(r.time)}「${V(r.item)}」沒有負責人`)});
+ S.posts.forEach(r=>act().forEach(d=>{const L=gp(r,'as.'+d.k)||[];L.forEach(n=>{const p=Pm[n];if(p&&!(p.days||{})[d.k])E(`${n}：排在 ${dl(d.k)}「${r.group}／${r.area}」，但當天沒勾出勤`);if(!p)W(`${dl(d.k)}「${r.area}」的「${n}」不在人員名單`)});if(num(r.n)&&L.length!==num(r.n))W(`${dl(d.k)}「${r.group}／${r.area}」需 ${r.n} 人，排了 ${L.length} 人`)}));
+ const slot={};S.rot.forEach(r=>(r.who||[]).forEach(n=>{const p=Pm[n];if(p&&!(p.days||{})[r.day])E(`${n}：輪替排在 ${dl(r.day)} ${r.start}「${r.post}」，但當天沒勾出勤`);(slot[r.day+n]=slot[r.day+n]||[]).forEach(o=>{if(tm(r.start)<tm(o.end)&&tm(o.start)<tm(r.end))E(`${n}：${dl(r.day)} ${r.start} 同時排了「${o.post}」和「${r.post}」`)});slot[r.day+n].push(r)}));
+ S.maps.forEach(m=>!m.img&&W(`場圖「${V(m.title)}」還沒上傳圖片`));
+ const u=used();S.people.forEach(p=>days().forEach(d=>{if((p.days||{})[d.k]&&!u[d.k].has(p.name))W(`${p.name}：${dl(d.k)} 有出勤，但沒排任何任務`)}));
+ const nm=S.people.map(p=>p.name);nm.filter((n,i)=>nm.indexOf(n)!==i).forEach(n=>E(`人員名單重複：${n}`));
+ S.prep.forEach(r=>!(r.who||[]).length&&W(`需提前完成「${V(r.item)}」沒有負責人`));
+ const need=num(v['早鳥名額'])*act().length;S.prizes.filter(x=>x.type==='早鳥').forEach(x=>{if(need&&num(x.qty)<need)E(`早鳥禮「${x.vendor} ${x.item}」只備 ${x.qty}，需 ${need}（每日 ${v['早鳥名額']} × ${act().length} 天）`)});
+ const sc=scratch(),st=sc.reduce((a,x)=>a+num(x.qty),0);if(v['刮刮樂格數']&&st!==num(v['刮刮樂格數']))E(`刮刮樂獎品合計 ${st} 份，但刮刮樂是 ${v['刮刮樂格數']} 格`);
+ const br=S.prizes.filter(x=>x.type==='喜餅提袋');if(v['喜餅展示家數']&&br.length!==num(v['喜餅展示家數']))W(`喜餅展示寫 ${v['喜餅展示家數']} 家，提袋品牌只有 ${br.length} 家`);
+ const bt=br.reduce((a,x)=>a+num(x.qty),0);if(v['提袋總數']&&bt<num(v['提袋總數']))W(`喜餅提袋合計 ${bt} 個，少於提袋總數 ${v['提袋總數']}`);
+ const now=new Date();days().forEach(d=>{if(d.date&&new Date(d.date+'T23:59')<now)W(`${d.name} 日期 ${d.date} 已經過了，是否忘了改？`)});
+ const miss=new Set();JSON.stringify(S).replace(/\{\{([^}]+)\}\}/g,(m,k)=>{if(comp(k.trim())==null)miss.add(k)});miss.forEach(k=>E(`找不到變數 {{${k}}}，請到「設定」新增`));
+ return o;
+}
+
+/* ---------- views ---------- */
+const TABS=[['info','行前須知'],['maps','場圖'],['sched','時程'],['posts','崗位分工'],['prize','禮品活動'],['cards','任務卡'],['me','我的任務']];
+const ETABS=[['set','⚙ 設定'],['people','👥 人員'],['check','✅ 檢查']];
+function fixedBlocks(sec){
+ if(edit)return `<div class="card"><h2>固定說明（${sec}）</h2>${table('fixed',r=>r.sec===sec,{hide:[],preset:{sec}})}</div>`;
+ return `<div class="grid">${S.fixed.filter(r=>r.sec===sec).map(r=>`<div class="card"><h2>${esc(V(r.title))}</h2><div class="pre">${txt(r.body)}</div></div>`).join('')}</div>`;
+}
+const imgUrl=v=>/^(data:|https?:)/.test(v)?v:`https://lh3.googleusercontent.com/d/${v}=w2000`;
+function mapCards(f){const M=S.maps.filter(f);return M.map(m=>`<div class="card map"><h2>${esc(V(m.title))}</h2>${m.img?`<a href="${esc(imgUrl(m.img))}" target="_blank"><img src="${esc(imgUrl(m.img))}" alt="${esc(m.title)}" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://drive.google.com/thumbnail?id=${esc(m.img)}&sz=w2000'}"></a><div class="muted">點圖可放大</div>`:'<div class="nomap">尚未上傳圖片</div>'}${m.note?`<div class="pre" style="margin-top:6px">${txt(m.note)}</div>`:''}</div>`).join('')}
+const R={
+ maps(){if(edit)return `<div class="card"><h2>場圖</h2><div class="muted">「顯示在」選報到處／下訂處的圖，也會出現在該區的任務卡；選「全場」會出現在行前須知</div>${table('maps',()=>true,{preset:{place:'全場'}})}</div>`;
+  return S.maps.length?`<div class="grid">${mapCards(()=>true)}</div>`:'<div class="card muted">尚無場圖</div>'},
+ info(){const s=S.settings;
+  let h=`<div class="card"><h2>活動資訊</h2><div class="kv"><b>活動時間</b><div>${days().map(d=>`${dl(d.k)} ${esc(d.name)}　${esc(d.time)}`).join('<br>')}</div><b>集合地點</b><div>${txt(s.venue)}</div><b>交通方式</b><div>${txt(s.transit)}</div><b>PT 需準備</b><div>${txt(s.pt)}</div><b>Call 機配戴</b><div>${ppl(s.call,'','settings',0,'call')}</div></div>${edit?'<div class="muted" style="margin-top:6px">活動資訊請到「⚙ 設定」修改</div>':''}</div>`;
+  if(!edit)h+=mapCards(m=>m.place==='全場'&&m.img);
+  h+=fixedBlocks('行前須知');
+  h+=`<div class="card"><h2>工作人員名單</h2><div class="grid">${days().map(d=>{const L=S.people.filter(p=>(p.days||{})[d.k]);return `<div><h3>${dl(d.k)} ${esc(d.name)}（${L.length} 人）</h3>${L.map((p,i)=>`${i+1}. ${esc(p.name)}${p.org?` <span class="muted">${esc(p.org)}</span>`:''}`).join('<br>')}</div>`}).join('')}</div>${edit?'<div class="muted">名單請到「👥 人員」勾選出勤</div>':''}</div>`;
+  h+=`<div class="card"><h2>需提前完成</h2>${table('prep')}</div>`;return h},
+ sched(){
+  let h=`<div class="days"><button data-day="all" class="${dayF==='all'?'on':''}">全部</button>${days().map(d=>`<button data-day="${d.k}" class="${dayF===d.k?'on':''}">${dl(d.k)} ${esc(d.name)}</button>`).join('')}</div>`;
+  days().filter(d=>dayF==='all'||dayF===d.k).forEach(d=>{h+=`<div class="card"><h2>${dl(d.k)} ${esc(d.name)}</h2>${table('sched',r=>r.day===d.k,{preset:{day:d.k,who:[]}})}${edit?`<button class="btn sm" data-sort="${d.k}">依時間排序</button>`:''}</div>`});
+  return h+fixedBlocks('時程')},
+ posts(){return rotView()+`<div class="card"><h2>活動日崗位分工</h2><div class="muted">紅色名字＝當天沒勾出勤</div>${table('posts',()=>true,{preset:{leader:[],as:{}}})}</div>`},
+ prize(){
+  let h=fixedBlocks('禮品活動');
+  h+=`<div class="card"><h2>集點禮</h2>${table('points')}</div>`;
+  const sc=scratch();h+=`<div class="card"><h2>刮刮樂獎品編號（自動依數量產生）</h2><table class="tb v"><thead><tr><th>編號</th><th>廠商</th><th>品項</th><th>數量</th></tr></thead><tbody>${sc.map(x=>`<tr><td data-l="編號">${pad(x.from)}–${pad(x.to)}</td><td data-l="廠商">${esc(x.vendor)}</td><td data-l="品項">${esc(x.item)}</td><td data-l="數量">${esc(x.qty)}</td></tr>`).join('')}</tbody></table><div class="muted">合計 ${sc.reduce((a,x)=>a+num(x.qty),0)} 份｜調整順序或數量請在下方「禮品主表」改</div></div>`;
+  h+=`<div class="card"><h2>禮品主表</h2><div class="muted">任務卡、刮刮樂編號、檢查都從這張表帶入</div>${edit?table('prizes',()=>true,{preset:{type:'刮刮樂',place:'報到處'}}):TYPES.map(t=>`<h3>${t}</h3>`+table('prizes',r=>r.type===t,{hide:['type']})).join('')}</div>`;
+  h+=`<div class="card"><h2>下訂禮便利籤</h2>${table('draws')}</div>`;return h},
+ cards(){
+  if(edit)return `<div class="card"><h2>任務卡</h2><div class="muted">物品清單會依「禮品主表」的存放位置自動帶入</div>${table('cards',()=>true,{preset:{who:[]}})}</div>`;
+  return `<div class="grid">${S.cards.map(c=>{const it=S.prizes.filter(p=>p.place===c.place);return `<div class="card"><h2>${esc(c.place)} 進場任務卡</h2><div>負責：${ppl(c.who,'','cards',0,'who')}</div><div class="pre" style="margin:8px 0">${txt(c.steps)}</div>${S.maps.filter(m=>m.place===c.place&&m.img).map(m=>`<div class="map" style="margin:8px 0"><a href="${esc(imgUrl(m.img))}" target="_blank"><img src="${esc(imgUrl(m.img))}"></a></div>`).join('')}<h3>物品確認（${it.length} 項）</h3><table class="tb"><tbody>${it.map(p=>`<tr><td>${esc(p.type)}</td><td>${esc(p.vendor)}</td><td>${esc(p.item)}</td><td>${esc(p.qty)}</td><td><input type="checkbox"></td></tr>`).join('')}</tbody></table></div>`}).join('')}</div>`},
+ me(){
+  let h=`<div class="card"><h2>查詢我的任務</h2><input class="fi" list="pl" id="meq" placeholder="輸入或選擇姓名" value="${esc(me)}"><datalist id="pl">${S.people.map(p=>`<option value="${esc(p.name)}">`).join('')}</datalist></div>`;
+  if(!me)return h;const p=P()[me];
+  if(p)h+=`<div class="card">出勤：${days().filter(d=>(p.days||{})[d.k]).map(d=>dl(d.k)).join('、')||'（未勾出勤）'}</div>`;
+  days().forEach(d=>{const L=[];
+   S.rot.filter(r=>r.day===d.k&&(r.who||[]).includes(me)).sort((a,b)=>tm(a.start)-tm(b.start)).forEach(r=>L.push(`<b>🔄 ${esc(r.start)}–${esc(r.end)}</b> 輪替：${esc(r.post)}`));
+   S.sched.filter(r=>r.day===d.k&&(r.who||[]).includes(me)).forEach(r=>L.push(`<b>${txt(r.time)}</b> ${txt(r.area)}｜${txt(r.item)}${r.note?`<div class="muted pre">${txt(r.note)}</div>`:''}`));
+   if(/活動/.test(d.name))S.posts.forEach(r=>{const a=(gp(r,'as.'+d.k)||[]).includes(me),l=(r.leader||[]).includes(me)&&(!p||(p.days||{})[d.k]);if(a||l)L.push(`<b>${l?'小組長':'崗位'}</b> ${esc(r.group)}／${esc(r.area)}（${esc(r.loc)}）<details><summary>工作內容與台詞</summary><div class="pre">${txt(r.duty)}<hr>${txt(r.script)}</div></details>`)});
+   if(L.length)h+=`<div class="card"><h2>${dl(d.k)} ${esc(d.name)}</h2>${L.map(x=>`<div style="margin-bottom:8px">${x}</div>`).join('')}</div>`});
+  const o=[...S.cards.filter(c=>(c.who||[]).includes(me)).map(c=>`${esc(c.place)} 進場任務卡`),...S.prep.filter(r=>(r.who||[]).includes(me)).map(r=>`提前完成：${txt(r.item)}`)];
+  if(o.length)h+=`<div class="card"><h2>其他</h2>${o.join('<br>')}</div>`;return h},
+ set(){const s=S.settings,f=(k,l,a)=>`<label class="muted">${l}</label>${a?`<textarea class="fi" data-set="${k}" rows="3">${esc(s[k])}</textarea>`:`<input class="fi" data-set="${k}" value="${esc(s[k])}">`}`;
+  return `<div class="card"><h2>場次設定</h2><div class="grid"><div>${f('title','展名')}${f('sub','副標')}${f('venue','集合地點')}</div><div>${f('transit','交通方式',1)}${f('pt','PT 需準備',1)}</div></div><label class="muted">Call 機配戴者</label><div>${ppl(s.call,'','settings',0,'call')}</div></div>
+  <div class="card"><h2>活動日期</h2>${table('days',()=>true,{preset:{k:'D'+days().length,name:'活動日'}})}</div>
+  <div class="card"><h2>變數</h2><div class="muted">任何文字裡寫 {{變數名稱}} 就會自動帶入。內建：{{展名}} {{D0}} {{D1}}…（日期）{{集點禮}} {{刮刮樂編號}} {{活動日數}}</div>${table('vars')}</div>
+  <div class="card"><h2>場次管理</h2><div class="tools"><button class="btn pri" data-act="newev">＋建立新場次</button><button class="btn" data-act="link">複製工作人員連結（檢視）</button><button class="btn" data-act="alink">複製管理連結（編輯）</button><button class="btn" data-act="tpl">把這場設為模板</button><button class="btn" data-act="clear">清空本場排班</button><button class="btn" data-act="exp">匯出備份</button><button class="btn" data-act="imp">匯入備份</button><button class="btn" data-act="delev" style="color:var(--er)">刪除本場</button></div><div class="muted">建立新場次：從模板或任何一場複製，自動清空出勤與負責人，台詞、禮品、結構都保留。原本的場次不受影響。</div></div>`},
+ people(){return `<div class="card"><h2>人員名單＋出勤</h2><div class="muted">改姓名會自動同步所有分工</div>${table('people',()=>true,{preset:{days:{}}})}<h3>批次新增</h3><textarea class="fi" id="bulk" rows="3" placeholder="一行一個名字，或用、分隔"></textarea><button class="btn sm" data-act="bulk" style="margin-top:6px">加入名單</button></div>`},
+ check(){const c=checks();return `<div class="card"><h2>發布前檢查（${c.length}）</h2>${c.length?`<ul class="chk">${c.map(([t,m])=>`<li class="${t}">${t==='err'?'⛔':'⚠️'} ${esc(m)}</li>`).join('')}</ul>`:'全部通過 ✅'}</div>`}
+};
+function head(){
+ $('t').textContent=V(S.settings.title);$('sub').textContent=V(S.settings.sub)+'　'+days().map(d=>dl(d.k)).join('–');document.title=V(S.settings.title)+' 行前通知';
+ nowBar();
+ const T=edit?[...TABS,...ETABS]:TABS,nc=edit?checks().filter(x=>x[0]==='err').length:0;
+ $('tabs').innerHTML=T.map(([k,l])=>`<button data-tab="${k}" class="${tab===k?'on':''} ${ETABS.some(e=>e[0]===k)?'ed':''}">${l}${k==='check'&&nc?` <span class="pill">${nc}</span>`:''}</button>`).join('');
+ const evs=(admin||edit)&&GAS&&events.length?`<select class="evsel" id="evsel">${eid?'':'<option selected>（尚未儲存的新場次）</option>'}${[...events].sort((a,b)=>b.updated-a.updated).map(e=>`<option value="${e.id}" ${e.id===eid?'selected':''}>${e.tpl?'★模板｜':''}${esc(e.title)}</option>`).join('')}</select>`:'';
+ $('tools').innerHTML=evs+(edit?`${dirty?'<span class="pill">尚未發布</span>':''}<button class="btn pri" data-act="save">儲存並發布</button><button class="btn" data-act="exit">離開編輯</button>`:`<button class="btn" data-act="print">列印</button><button class="btn" data-act="edit">🔒 編輯</button>`);
+}
+function render(){if(!edit&&ETABS.some(e=>e[0]===tab))tab='info';head();const y=scrollY;$('main').innerHTML=R[tab]();scrollTo(0,y)}
+
+/* ---------- events ---------- */
+document.addEventListener('input',e=>{const t=e.target;
+ if(t.id==='meq'){me=t.value.trim();LS.set('me',me);nowBar();if(P()[me]||!me){const p=t.selectionStart;render();const q=$('meq');q.focus();q.setSelectionRange(p,p)}return}
+ if(t.dataset.set){S.settings[t.dataset.set]=t.value;mark();return}
+ if(t.dataset.c){const r=arr(t.dataset.c)[+t.dataset.i];let v=t.type==='checkbox'?t.checked:t.value;if(t.type==='number')v=t.value===''?'':Number(t.value);sp(r,t.dataset.f,v);mark();
+  if(t.tagName==='TEXTAREA')t.rows=Math.min(8,t.value.split('\n').length);}
+});
+document.addEventListener('change',e=>{const t=e.target;
+ if(t.id==='evsel'){if(dirty&&!confirm('這場還有修改沒發布，確定切換？')){head();return}eid=t.value;setUrl();load(true);return}
+ if(t.id==='upf'){const f=t.files[0];t.value='';if(!f||!upTarget)return;const[c,i]=upTarget.split('|');upload(f).then(id=>{arr(c)[+i].img=id;mark();render();toast('已上傳，記得按「儲存並發布」')}).catch(e=>toast('上傳失敗：'+(e.message||e)));return}
+ if(t.id==='imp'){const f=t.files[0];if(!f)return;f.text().then(x=>{S=norm(JSON.parse(x));mark();render();toast('已匯入，記得按「儲存並發布」')}).catch(()=>toast('檔案格式錯誤'));t.value='';return}
+ if(t.dataset.c==='people'&&t.dataset.f==='name'){const o=t.dataset.old,n=t.value.trim();if(o&&n&&o!==n)rename(o,n);t.dataset.old=n}
+ if(t.dataset.c&&(t.tagName==='SELECT'||t.type==='checkbox'||t.type==='date'||t.dataset.c==='days'||t.dataset.c==='vars'))render();
+});
+function rename(o,n){const f=L=>L&&L.map(x=>x===o?n:x);S.rot.forEach(r=>r.who=f(r.who));S.sched.forEach(r=>r.who=f(r.who));S.prep.forEach(r=>r.who=f(r.who));S.cards.forEach(r=>r.who=f(r.who));S.settings.call=f(S.settings.call);S.posts.forEach(r=>{r.leader=f(r.leader);Object.keys(r.as||{}).forEach(k=>r.as[k]=f(r.as[k]))});toast(`已將所有「${o}」改為「${n}」`)}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-up],[data-rmimg],[data-tab],[data-day],[data-act],[data-mv],[data-del],[data-addrow],[data-rm],[data-pick],[data-sort],#pop .it');
+ if(!t){if(!e.target.closest('#pop'))closePop();return}
+ const d=t.dataset;
+ if(t.classList.contains('it')){pickToggle(d.n);return}
+ if(d.up){upTarget=d.up;$('upf').click();return}
+ if(d.rmimg){const[c,i]=d.rmimg.split('|');arr(c)[+i].img='';mark();render();return}
+ if(d.tab){tab=d.tab;closePop();render();scrollTo(0,0);return}
+ if(d.day){dayF=d.day;render();return}
+ if(d.mv){const[c,i,s]=d.mv.split('|'),A=arr(c),a=+i,b=a+ +s;if(b<0||b>=A.length)return;[A[a],A[b]]=[A[b],A[a]];mark();render();return}
+ if(d.del){const[c,i]=d.del.split('|');if(!confirm('刪除這一列？'))return;arr(c).splice(+i,1);mark();render();return}
+ if(d.addrow){arr(d.addrow).push(JSON.parse(d.preset||'{}'));mark();render();return}
+ if(d.sort){const k=d.sort,mins=s=>{const m=String(V(s)).match(/(\d{1,2})[:：]?(\d{2})/);return m?+m[1]*60+ +m[2]:9999};const rows=S.sched.filter(r=>r.day===k).sort((a,b)=>mins(a.time)-mins(b.time));let j=0;S.sched=S.sched.map(r=>r.day===k?rows[j++]:r);mark();render();return}
+ if(d.rm){const[c,i,f,j]=d.rm.split('|'),r=c==='settings'?S.settings:arr(c)[+i];gp(r,f).splice(+j,1);mark();render();return}
+ if(d.pick){openPop(t,d.pick);return}
+ if(d.act)act_(d.act);
+});
+function openPop(el,key){const[c,i,f,day]=key.split('|');popCtx={c,i:+i,f,day};const p=$('pop'),r=el.getBoundingClientRect();
+ p.style.left=Math.max(6,Math.min(innerWidth-266,r.left))+'px';p.style.top=Math.min(innerHeight-350,r.bottom+4)+'px';p.hidden=false;
+ p.innerHTML=`<input class="fi" id="pq" placeholder="搜尋，或輸入文字後按 Enter（如：全體人員）" style="margin:6px;width:auto"><div class="ls" id="pls"></div>`;
+ popList();const q=$('pq');q.focus();q.oninput=popList;q.onkeydown=e=>{if(e.key==='Enter'&&q.value.trim()){pickToggle(q.value.trim());q.value='';popList()}if(e.key==='Escape')closePop()};
+}
+function popTarget(){const{c,i,f}=popCtx,r=c==='settings'?S.settings:arr(c)[i];let L=gp(r,f);if(!Array.isArray(L)){L=[];sp(r,f,L)}return L}
+function popList(){const q=($('pq').value||'').trim(),L=popTarget(),day=popCtx.day;
+ const ps=S.people.filter(p=>!q||p.name.includes(q)).map(p=>({n:p.name,on:!day||(p.days||{})[day]})).sort((a,b)=>b.on-a.on);
+ $('pls').innerHTML=ps.map(p=>`<div class="it ${p.on?'':'off'} ${L.includes(p.n)?'sel':''}" data-n="${esc(p.n)}"><span>${esc(p.n)}</span><span class="muted">${L.includes(p.n)?'✓':p.on?'':'未出勤'}</span></div>`).join('')||'<div class="muted" style="padding:6px">按 Enter 加入自訂文字</div>';
+}
+function pickToggle(n){const L=popTarget(),k=L.indexOf(n);k<0?L.push(n):L.splice(k,1);mark();const pc={...popCtx},y=scrollY;$('main').innerHTML=R[tab]();head();scrollTo(0,y);popCtx=pc;popList()}
+function closePop(){$('pop').hidden=true;popCtx=null}
+
+async function act_(a){
+ if(a==='print')return print();
+ if(a==='edit'){if(GAS){const p=prompt('請輸入編輯密碼');if(!p)return;try{if(!await call('checkPw',p))return toast('密碼錯誤')}catch(e){return toast('連線失敗')}pw=p}edit=true;render();return}
+ if(a==='exit'){if(dirty&&!confirm('還有修改沒發布，確定離開？（修改會保留在這個畫面直到重新整理）'))return;edit=false;render();return}
+ if(a==='save'){const errs=checks().filter(x=>x[0]==='err');if(errs.length&&!confirm(`檢查有 ${errs.length} 個錯誤，仍要發布嗎？`)){tab='check';render();return}
+  if(!GAS){LS.set('brief_v2',JSON.stringify(S));dirty=false;head();return toast('（預覽模式）已存在本機')}
+  toast('發布中…');try{if(!eid){const r=await call('createEvent',pw,JSON.stringify(S),S.settings.title);eid=r.id;ver=r.ver;dirty=false;setUrl();events=(await call('getInfo')).events;head();return toast('已發布')}
+  const r=await call('saveState',pw,eid,ver,JSON.stringify(S),S.settings.title);if(r.ok){events=events.map(e=>e.id===eid?{...e,title:S.settings.title,updated:Date.now()}:e);ver=r.ver;dirty=false;head();toast('已發布，所有人重新整理即可看到')}else if(r.conflict){if(confirm('有人剛更新過內容。按「確定」載入最新版（你的修改會不見，可先匯出備份）'))load(true)}}catch(e){toast('發布失敗：'+(e.message||e))}return}
+ if(a==='clear'){if(!confirm('清空本場所有出勤勾選與負責人？'))return;clearAssign(S);mark();render();toast('已清空，記得按「儲存並發布」');return}
+ if(a==='newev')return newEvModal();
+ if(a==='rotgen')return rotModal();
+ if(a==='link'||a==='alink'){if(a==='link'&&!eid)return toast('請先儲存這一場');const u=a==='link'?baseUrl+'?e='+eid:baseUrl+'?admin';try{await navigator.clipboard.writeText(u);toast('已複製連結')}catch(e){prompt('複製這個連結：',u)}return}
+ if(a==='tpl'){if(!eid)return toast('請先儲存這一場');try{events=await call('setTemplate',pw,eid);head();toast('已設為模板 ★')}catch(e){toast('失敗：'+e.message)}return}
+ if(a==='delev'){if(!eid)return;if(prompt(`確定刪除「${S.settings.title}」？輸入「刪除」確認`)!=='刪除')return;try{events=await call('deleteEvent',pw,eid);eid=null;dirty=false;setUrl();load(true);toast('已刪除')}catch(e){toast('失敗：'+e.message)}return}
+ if(a==='exp'){const b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=(S.settings.title||'行前通知')+'.json';l.click();return}
+ if(a==='imp'){$('imp').click();return}
+ if(a==='bulk'){const ns=$('bulk').value.split(/[\n、,，]+/).map(x=>x.trim()).filter(Boolean),have=new Set(S.people.map(p=>p.name));let c=0;ns.forEach(n=>{if(!have.has(n)){S.people.push({name:n,org:'',phone:'',days:{}});have.add(n);c++}});mark();render();toast(`新增 ${c} 人`);return}
+}
+function norm(d){const s=JSON.parse(JSON.stringify(SEED));d=d||s;['people','sched','posts','prizes','points','draws','prep','cards','fixed','rot','maps'].forEach(k=>{if(!Array.isArray(d[k]))d[k]=[]});d.settings={...s.settings,...(d.settings||{})};return d}
+const tm=s=>{const m=String(s||'').match(/(\d{1,2})[:：](\d{2})/);return m?+m[1]*60+ +m[2]:NaN};
+const hm=x=>String(Math.floor(x/60)).padStart(2,'0')+':'+String(x%60).padStart(2,'0');
+const todayK=()=>{const n=new Date(),s=`${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;return (days().find(d=>d.date===s)||{}).k};
+function rotView(){
+ let h='<div class="card"><h2>🔄 輪替表</h2>';
+ if(edit)h+=`<div class="muted">可用「自動排輪替」產生，再手動微調</div><button class="btn pri sm" data-act="rotgen" style="margin:6px 0">自動排輪替</button>${table('rot',()=>true,{preset:{day:act()[0]&&act()[0].k,who:[]}})}`;
+ else if(!S.rot.length)return '';
+ else{const tk=todayK(),nw=new Date(),nm=nw.getHours()*60+nw.getMinutes();
+  days().forEach(d=>{const R=S.rot.filter(r=>r.day===d.k);if(!R.length)return;
+   [...new Set(R.map(r=>r.group||''))].forEach(g=>{const G=R.filter(r=>(r.group||'')===g),sl=[...new Set(G.map(r=>r.start+'|'+r.end))].sort((a,b)=>tm(a)-tm(b)),ps=[...new Set(G.map(r=>r.post))];
+    h+=`<h3>${dl(d.k)} ${esc(g)}</h3><div style="overflow:auto"><table class="tb rg"><thead><tr><th>時段</th>${ps.map(p=>`<th>${esc(p)}</th>`).join('')}</tr></thead><tbody>${sl.map(s=>{const[a,b]=s.split('|'),cur=d.k===tk&&nm>=tm(a)&&nm<tm(b);return `<tr class="${cur?'cur':''}"><td><b>${a}–${b}</b>${cur?' ◀ 現在':''}</td>${ps.map(p=>`<td>${G.filter(r=>r.start===a&&r.end===b&&r.post===p).flatMap(r=>r.who||[]).map(n=>`<span class="chip ${n===me?'me':''}">${esc(n)}</span>`).join('')}</td>`).join('')}</tr>`}).join('')}</tbody></table></div>`})});}
+ return h+'</div>';
+}
+let lastWarn='';
+function nowBar(){
+ const el=$('now');if(!S||!me||!S.rot.length){el.hidden=true;return}
+ const tk=todayK();if(!tk){el.hidden=true;return}
+ const n=new Date(),nm=n.getHours()*60+n.getMinutes(),R=S.rot.filter(r=>r.day===tk&&(r.who||[]).includes(me)).sort((a,b)=>tm(a.start)-tm(b.start));
+ if(!R.length){el.hidden=true;return}
+ const cur=R.find(r=>nm>=tm(r.start)&&nm<tm(r.end)),nx=R.find(r=>tm(r.start)>nm);
+ let s=`${esc(me)}　現在：<b>${cur?esc(cur.post):'—'}</b>`;
+ if(nx){const left=tm(nx.start)-nm;s+=`　｜　${esc(nx.start)} 換到：<b>${esc(nx.post)}</b>（還有 ${left} 分鐘）`;
+  if(left<=5&&lastWarn!==nx.start+nx.post){lastWarn=nx.start+nx.post;toast(`⏰ ${left} 分鐘後換到「${nx.post}」`);try{navigator.vibrate&&navigator.vibrate([300,150,300])}catch(e){}}}
+ $('nowt').innerHTML=s;el.hidden=false;
+}
+setInterval(nowBar,30000);
+function rotModal(){
+ const m=$('modal'),gs=[...new Set(S.posts.map(r=>r.group))],v=vars();
+ const posts=g=>S.posts.filter(r=>r.group===g);
+ const draw=()=>{const d=$('rgD').value,g=$('rgG').value;$('rgP').innerHTML=posts(g).map((r,i)=>{const L=gp(r,'as.'+d)||[];return `<label style="margin:2px 0"><input type="checkbox" data-pi="${S.posts.indexOf(r)}" ${L.length?'checked':''}> ${esc(r.area)}（${num(r.n)||1} 位｜${L.map(esc).join('、')||'未排人'}）</label>`}).join('')};
+ m.innerHTML=`<div class="card"><h2>自動排輪替</h2><div class="muted">勾選的崗位人員會依時段輪流換崗位；人數多於崗位時，多出來的人會排「休息／機動」</div>
+ <label class="muted">日期</label><select class="fi" id="rgD">${act().map(d=>`<option value="${d.k}">${dl(d.k)}</option>`).join('')}</select>
+ <label class="muted">組別</label><select class="fi" id="rgG">${gs.map(g=>`<option ${g==='報到處組'?'selected':''}>${esc(g)}</option>`).join('')}</select>
+ <label class="muted">參與輪替的崗位</label><div id="rgP"></div>
+ <div class="grid" style="gap:8px;grid-template-columns:1fr 1fr 1fr"><div><label class="muted">開始</label><input class="fi" type="time" id="rgS" value="${hm(tm(v['開門'])||600)}"></div><div><label class="muted">結束</label><input class="fi" type="time" id="rgE" value="${hm(tm(v['停止入場'])||1080)}"></div><div><label class="muted">每段（分鐘）</label><input class="fi" type="number" id="rgI" value="120" step="15"></div></div>
+ <div class="muted" style="margin-top:6px">會取代這一天、這一組原本的輪替</div>
+ <div class="tools" style="margin-top:12px;justify-content:flex-end"><button class="btn" id="rgX">取消</button><button class="btn pri" id="rgOk">產生</button></div></div>`;
+ m.hidden=false;draw();$('rgD').onchange=draw;$('rgG').onchange=draw;$('rgX').onclick=()=>m.hidden=true;
+ $('rgOk').onclick=()=>{const d=$('rgD').value,g=$('rgG').value,a=tm($('rgS').value),b=tm($('rgE').value),iv=num($('rgI').value);
+  if(!(b>a)||iv<15)return toast('時間設定不正確');
+  const sel=[...$('rgP').querySelectorAll('input:checked')].map(x=>S.posts[+x.dataset.pi]);if(!sel.length)return toast('請至少勾一個崗位');
+  const seats=sel.flatMap(r=>Array(Math.max(1,num(r.n)||1)).fill(r.area)),pool=[...new Set(sel.flatMap(r=>gp(r,'as.'+d)||[]))];
+  if(!pool.length)return toast('勾選的崗位當天都沒排人');
+  const k=pool.length,out=[];let i=0;
+  for(let s=a;s<b;s+=iv,i++){const e=Math.min(b,s+iv),by={};pool.forEach((n,j)=>{const seat=(j+i)%Math.max(k,seats.length);const post=seat<seats.length?seats[seat]:'休息／機動';(by[post]=by[post]||[]).push(n)});
+   [...seats.filter((x,j)=>seats.indexOf(x)===j),'休息／機動'].forEach(p=>by[p]&&out.push({day:d,group:g,start:hm(s),end:hm(e),post:p,who:by[p]}))}
+  S.rot=S.rot.filter(r=>!(r.day===d&&r.group===g)).concat(out);m.hidden=true;mark();render();toast(`已產生 ${Math.ceil((b-a)/iv)} 個時段`)};
+}
+function upload(f){return new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const s=Math.min(1,2400/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.round(im.width*s);cv.height=Math.round(im.height*s);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);URL.revokeObjectURL(u);const du=cv.toDataURL('image/jpeg',.85);
+ if(!GAS)return ok(du);toast('上傳中…');call('uploadImage',pw,f.name.replace(/\.\w+$/,'')+'.jpg',du.split(',')[1],'image/jpeg').then(ok,no)};im.onerror=()=>no(new Error('無法讀取圖片'));im.src=u})}
+function clearAssign(d){d.rot=[];d.people.forEach(p=>p.days={});d.sched.forEach(r=>r.who=[]);d.prep.forEach(r=>r.who=[]);d.cards.forEach(r=>r.who=[]);d.posts.forEach(r=>{r.leader=[];r.as={}});d.settings.call=[]}
+function setUrl(){try{const q=new URLSearchParams();if(eid)q.set('e',eid);if(admin)q.set('admin','');history.replaceState(null,'',location.pathname+(q.toString()?'?'+q.toString().replace('admin=','admin'):''))}catch(e){}}
+const getParam=async()=>{const p=new URLSearchParams(location.search);admin=p.has('admin');return p.get('e')||''};
+async function getData(id){const r=await call('getState',id);return{ver:r.ver,d:r.data?JSON.parse(r.data):null}}
+async function load(keep){
+ if(!GAS){const l=LS.get('brief_v2');S=norm(l?JSON.parse(l):null);dirty=false;render();return}
+ try{
+  if(!keep){const info=await call('getInfo');events=info.events;baseUrl=location.origin+location.pathname;const p=await getParam();
+   const live=[...events].sort((a,b)=>b.updated-a.updated);eid=events.some(e=>e.id===p)?p:((live.find(e=>!e.tpl)||live[0]||{}).id||null)}
+  if(eid){const r=await getData(eid);ver=r.ver;S=norm(r.d)}else{ver=0;S=norm(null)}
+ }catch(e){S=norm(null);toast('讀取失敗，顯示預設內容')}
+ dirty=false;render();
+}
+function newEvModal(){
+ if(!GAS)return toast('預覽模式無法建立場次');
+ const m=$('modal'),tp=events.find(e=>e.tpl);
+ m.innerHTML=`<div class="card"><h2>建立新場次</h2><label class="muted">展名</label><input class="fi" id="nvT" placeholder="例：2027 台北世貿好婚市集"><label class="muted">從哪一場複製</label><select class="fi" id="nvS">${events.map(e=>`<option value="${e.id}" ${(tp?e.id===tp.id:e.id===eid)?'selected':''}>${e.tpl?'★模板｜':''}${esc(e.title)}</option>`).join('')}</select><label><input type="checkbox" id="nvC" checked> 清空出勤與所有負責人</label><div class="tools" style="margin-top:12px;justify-content:flex-end"><button class="btn" id="nvX">取消</button><button class="btn pri" id="nvOk">建立</button></div></div>`;
+ m.hidden=false;$('nvX').onclick=()=>m.hidden=true;
+ $('nvOk').onclick=async()=>{const title=$('nvT').value.trim();if(!title)return toast('請輸入展名');
+  try{toast('建立中…');const src=norm((await getData($('nvS').value)).d);if($('nvC').checked)clearAssign(src);src.settings.title=title;
+   const r=await call('createEvent',pw,JSON.stringify(src),title);m.hidden=true;eid=r.id;setUrl();events=(await call('getInfo')).events;tab='set';await load(true);toast('已建立，請先改日期與變數')}catch(e){toast('失敗：'+e.message)}};
+}
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
+setInterval(async()=>{if(!GAS||!eid||dirty||document.hidden)return;try{const v=await call('getVer',eid);if(v!==ver){await load(true);toast('內容已更新')}}catch(e){}},20000);
+me=LS.get('me')||'';S=norm(null);render();load();
+</script></body></html>
