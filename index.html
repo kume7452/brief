@@ -39,7 +39,8 @@ table.tb{width:100%;border-collapse:collapse;font-size:13px}
 .evsel{max-width:220px;border:1px solid var(--ln);border-radius:6px;padding:4px;font:inherit;font-size:13px}
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#2b2522;color:#fff;padding:8px 16px;border-radius:20px;z-index:30}
 [hidden]{display:none!important}
-.map img{width:100%;border-radius:6px;border:1px solid var(--ln);cursor:zoom-in;display:block}.thumb{max-width:160px;max-height:110px;border-radius:4px;border:1px solid var(--ln);display:block;margin-bottom:4px}.nomap{border:2px dashed var(--ln);border-radius:6px;padding:24px;text-align:center;color:var(--mu)}
+.map img{width:100%;border-radius:6px;border:1px solid var(--ln);cursor:zoom-in;display:block}.thumb{max-width:160px;max-height:110px;border-radius:4px;border:1px solid var(--ln);display:block;margin-bottom:4px}.drop{border:1px dashed transparent;border-radius:6px;padding:4px}.drop.ov,.drop.on{border-color:var(--b);background:#eef4f9}
+.nomap{border:2px dashed var(--ln);border-radius:6px;padding:24px;text-align:center;color:var(--mu)}
 #now{background:#fff6e5;border-top:1px solid #f0dcb4;padding:6px 0;font-size:13.5px}#now b{color:var(--r)}
 .rg td.cur{background:#fff6e5}.rg tr.cur td{background:#fff6e5}.me{background:var(--r);color:#fff}
 @media(max-width:700px){
@@ -90,7 +91,7 @@ const V=s=>String(s??'').replace(/\{\{([^}]+)\}\}/g,(m,k)=>{const r=comp(k.trim(
 const txt=s=>esc(V(s)).replace(/\n/g,'<br>');
 function gp(o,p){return p.split('.').reduce((a,k)=>a==null?a:a[k],o)}
 function sp(o,p,v){const ks=p.split('.');let a=o;ks.slice(0,-1).forEach(k=>{if(a[k]==null||typeof a[k]!=='object')a[k]={};a=a[k]});a[ks.at(-1)]=v}
-function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2600)}
+function toast(m,ms){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,ms||(/失敗|錯誤/.test(m)?8000:2600))}
 function mark(){if(!dirty){dirty=true;head()}}
 
 /* ---------- table engine ---------- */
@@ -122,7 +123,7 @@ function ppl(list,day,c,i,f){
 function cell(c,r,i,col){
  const v=gp(r,col.f),day=col.d||(col.t==='ppl'&&r.day)||'';
  if(col.t==='ro')return esc(col.ro(r));
- if(col.t==='img')return edit?`${v?`<img class="thumb" src="${esc(imgUrl(v))}">`:''}<button class="btn sm" data-up="${c}|${i}">${v?'更換':'上傳'}圖片</button>${v?` <button class="btn sm" data-rmimg="${c}|${i}">移除</button>`:''}`:(v?`<img class="thumb" src="${esc(imgUrl(v))}">`:'');
+ if(col.t==='img')return edit?`${v?`<img class="thumb" src="${esc(imgUrl(v))}">`:''}<div class="drop" data-drop="${c}|${i}"><button class="btn sm" data-up="${c}|${i}">${v?'更換':'上傳'}圖片</button><div class="muted">或把圖拖到這裡／點這格後按 Cmd+V 貼上</div></div>${v?` <button class="btn sm" data-rmimg="${c}|${i}">移除</button>`:''}`:(v?`<img class="thumb" src="${esc(imgUrl(v))}">`:'');
  if(col.t==='ppl')return ppl(v,day,c,i,col.f);
  if(!edit){if(col.t==='chk')return v?'✓':'';if(col.t==='day')return esc(dl(v));return txt(v)}
  const a=`data-c="${c}" data-i="${i}" data-f="${col.f}"`;
@@ -239,7 +240,7 @@ document.addEventListener('input',e=>{const t=e.target;
 });
 document.addEventListener('change',e=>{const t=e.target;
  if(t.id==='evsel'){if(dirty&&!confirm('這場還有修改沒發布，確定切換？')){head();return}eid=t.value;setUrl();load(true);return}
- if(t.id==='upf'){const f=t.files[0];t.value='';if(!f||!upTarget)return;const[c,i]=upTarget.split('|');upload(f).then(id=>{arr(c)[+i].img=id;mark();render();toast('已上傳，記得按「儲存並發布」')}).catch(e=>toast('上傳失敗：'+(e.message||e)));return}
+ if(t.id==='upf'){const f=t.files[0];t.value='';if(f&&upTarget)doUp(upTarget,f);return}
  if(t.id==='imp'){const f=t.files[0];if(!f)return;f.text().then(x=>{S=norm(JSON.parse(x));mark();render();toast('已匯入，記得按「儲存並發布」')}).catch(()=>toast('檔案格式錯誤'));t.value='';return}
  if(t.dataset.c==='people'&&t.dataset.f==='name'){const o=t.dataset.old,n=t.value.trim();if(o&&n&&o!==n)rename(o,n);t.dataset.old=n}
  if(t.dataset.c&&(t.tagName==='SELECT'||t.type==='checkbox'||t.type==='date'||t.dataset.c==='days'||t.dataset.c==='vars'))render();
@@ -341,6 +342,15 @@ function rotModal(){
    [...seats.filter((x,j)=>seats.indexOf(x)===j),'休息／機動'].forEach(p=>by[p]&&out.push({day:d,group:g,start:hm(s),end:hm(e),post:p,who:by[p]}))}
   S.rot=S.rot.filter(r=>!(r.day===d&&r.group===g)).concat(out);m.hidden=true;mark();render();toast(`已產生 ${Math.ceil((b-a)/iv)} 個時段`)};
 }
+function doUp(key,f){if(!/^image\//.test(f.type)&&!/\.(jpe?g|png|gif|webp)$/i.test(f.name))return toast('上傳失敗：請用 JPG 或 PNG 圖片（iPhone 的 HEIC 請先轉檔或截圖）');
+ const[c,i]=key.split('|');const cell=document.querySelector(`[data-drop="${key}"]`);if(cell)cell.innerHTML='<span class="muted">⏳ 上傳中…</span>';
+ upload(f).then(id=>{arr(c)[+i].img=id;mark();render();toast('已上傳，記得按「儲存並發布」')}).catch(e=>{render();toast('上傳失敗：'+(e.message||e))})}
+let pasteKey='';
+document.addEventListener('dragover',e=>{const z=e.target.closest&&e.target.closest('[data-drop]');if(z){e.preventDefault();z.classList.add('ov')}});
+document.addEventListener('dragleave',e=>{const z=e.target.closest&&e.target.closest('[data-drop]');z&&z.classList.remove('ov')});
+document.addEventListener('drop',e=>{const z=e.target.closest&&e.target.closest('[data-drop]');if(!z)return;e.preventDefault();const f=e.dataTransfer.files[0];f&&doUp(z.dataset.drop,f)});
+document.addEventListener('pointerdown',e=>{const z=e.target.closest&&e.target.closest('[data-drop]');document.querySelectorAll('.drop.on').forEach(x=>x.classList.remove('on'));if(z){pasteKey=z.dataset.drop;z.classList.add('on')}});
+document.addEventListener('paste',e=>{if(!edit||!pasteKey||!document.querySelector(`[data-drop="${pasteKey}"]`))return;const it=[...((e.clipboardData||{}).items||[])].find(x=>x.type.startsWith('image/'));if(!it)return;e.preventDefault();const b=it.getAsFile();doUp(pasteKey,new File([b],'paste.png',{type:b.type}))});
 function upload(f){return new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const s=Math.min(1,2400/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.round(im.width*s);cv.height=Math.round(im.height*s);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);URL.revokeObjectURL(u);const du=cv.toDataURL('image/jpeg',.85);
  if(!GAS)return ok(du);toast('上傳中…');call('uploadImage',pw,f.name.replace(/\.\w+$/,'')+'.jpg',du.split(',')[1],'image/jpeg').then(ok,no)};im.onerror=()=>no(new Error('無法讀取圖片'));im.src=u})}
 function clearAssign(d){d.rot=[];d.people.forEach(p=>p.days={});d.sched.forEach(r=>r.who=[]);d.prep.forEach(r=>r.who=[]);d.cards.forEach(r=>r.who=[]);d.posts.forEach(r=>{r.leader=[];r.as={}});d.settings.call=[]}
